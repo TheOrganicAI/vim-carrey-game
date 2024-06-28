@@ -107,7 +107,7 @@
         const gameResult = document.getElementById('gameResult');
         const scoreDisplay = document.getElementById('scoreDisplay');
         
-        const WIN_SCORE = 69;  // Updated win condition
+        const WIN_SCORE = 69;
 
         let primeagen = {
             x: 300,
@@ -115,7 +115,7 @@
             width: 40,
             height: 60,
             speed: 10,
-            direction: 0
+            targetX: 300
         };
 
         let fallingObjects = [];
@@ -228,7 +228,8 @@
             }
             
             // Update Primeagen's position
-            primeagen.x += primeagen.speed * primeagen.direction;
+            let dx = primeagen.targetX - primeagen.x;
+            primeagen.x += dx * 0.1; // Smooth movement
             primeagen.x = Math.max(0, Math.min(canvas.width - primeagen.width, primeagen.x));
             
             drawPrimeagen();
@@ -257,7 +258,7 @@
             ctx.fillStyle = '#00FF00';
             ctx.font = '20px Courier New';
             ctx.fillText(`Errors Collected: ${score}/${WIN_SCORE}`, 10, 30);
-            ctx.fillText('Use left/right arrows to move', 10, 60);
+            ctx.fillText('Use arrows, mouse, or touch to move', 10, 60);
 
             if (score >= WIN_SCORE) {
                 endGame();
@@ -282,7 +283,7 @@
             fallingObjects = [];
             countdown = 5;
             primeagen.x = 300;
-            primeagen.direction = 0;
+            primeagen.targetX = 300;
             linkOverlay.style.display = 'none';
         }
 
@@ -314,20 +315,27 @@
         document.addEventListener('keydown', (e) => {
             if (gameStarted && !gameOver) {
                 if (e.key === 'ArrowLeft') {
-                    primeagen.direction = -1;
+                    primeagen.targetX = Math.max(0, primeagen.x - primeagen.speed);
                 } else if (e.key === 'ArrowRight') {
-                    primeagen.direction = 1;
+                    primeagen.targetX = Math.min(canvas.width - primeagen.width, primeagen.x + primeagen.speed);
                 }
             } else if (gameOver && e.key === ' ') {
                 startGame();
             }
         });
 
-        document.addEventListener('keyup', (e) => {
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                primeagen.direction = 0;
+        canvas.addEventListener('mousemove', handlePointerMove);
+        canvas.addEventListener('touchmove', handlePointerMove);
+
+        function handlePointerMove(e) {
+            if (gameStarted && !gameOver) {
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const root = document.documentElement;
+                const mouseX = (e.clientX || e.touches[0].clientX) - rect.left - root.scrollLeft;
+                primeagen.targetX = mouseX - primeagen.width / 2;
             }
-        });
+        }
 
         startButton.addEventListener('click', startGame);
         linkOverlay.addEventListener('click', (e) => {
@@ -347,7 +355,7 @@
             y = drawCenteredText(`Mission: Collect ${WIN_SCORE} errors but avoid touching any classes!`, y, 20);
             y += 30;
             y = drawCenteredText("Instructions:", y, 20);
-            y = drawCenteredText("1. Use left/right arrows to move", y, 20);
+            y = drawCenteredText("1. Use mouse or touch to move", y, 20);
             y = drawCenteredText("2. Catch falling errors", y, 20);
             y = drawCenteredText("3. Avoid red 'class' objects", y, 20);
             y += 30;
