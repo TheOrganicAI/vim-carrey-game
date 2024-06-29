@@ -18,8 +18,11 @@
     <meta property="og:title" content="Vim Carrey's Error Collection Adventure" />
     <meta property="og:description" content="Join Vim Carrey on an epic adventure to collect errors and avoid classes!" />
     <meta property="og:image" content="https://vimcarrey.wtf/media/images/cover-image.png" />
-    <meta property="og:url" content="https://vimcarrey.wtf" />
+    <meta property="og:url" content="https://vimcarrey.wtf/vim-carrey-game.html" />
+
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vim Carrey's Error Collection Adventure">
+    <meta name="twitter:description" content="Join Vim Carrey on an epic adventure to collect errors and avoid classes!">
     <meta name="twitter:image" content="https://vimcarrey.wtf/media/images/cover-image.png">
  </head>
 
@@ -314,9 +317,9 @@
                 return;
             }
             
-            // Update Primeagen's position
+            
             let dx = primeagen.targetX - primeagen.x;
-            primeagen.x += dx * 0.1; // Smooth movement
+            primeagen.x += dx * 0.1; 
             primeagen.x = Math.max(0, Math.min(1 - primeagen.width / canvas.width, primeagen.x));
             
             fallingObjects.forEach((obj, index) => {

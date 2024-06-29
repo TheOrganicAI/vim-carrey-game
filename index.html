@@ -15,13 +15,15 @@
     <title>Vim Carrey</title>
     <link rel="icon" type="image/png" href="https://static.frontendmasters.com/assets/teachers/theprimeagen/thumb@2x.jpg">
     
-    <meta property="og:title" content="Vim Carrey" />
-    <meta property="og:description" content="Vim Carrey Homepage: A Meme Style Website" />
+    <meta property="og:title" content="Vim Carrey's Error Collection Adventure" />
+    <meta property="og:description" content="Join Vim Carrey on an epic adventure to collect errors and avoid classes!" />
     <meta property="og:image" content="https://vimcarrey.wtf/media/images/cover-image.png" />
     <meta property="og:url" content="https://vimcarrey.wtf" />
+
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vim Carrey's Error Collection Adventure">
+    <meta name="twitter:description" content="Join Vim Carrey on an epic adventure to collect errors and avoid classes!">
     <meta name="twitter:image" content="https://vimcarrey.wtf/media/images/cover-image.png">
-</head>
 
     <style>
         body {
@@ -31,15 +33,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align content to the start */
+            justify-content: flex-start; 
             min-height: 100vh;
-            padding: 0px; /* Remove padding to reduce space */
-            margin-top: 20px; /* Ensure there's no margin at the top */
+            padding: 0px; 
+            margin-top: 20px; 
         }
     
         @media (max-width: 768px) {
             body {
-                padding-top: 0px; /* Ensure there's minimal space on mobile */
+                padding-top: 0px; 
             }
         }
     
@@ -47,12 +49,12 @@
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             text-shadow: 2px 2px #ff00ff;
             text-align: center;
-            margin-top: 10px; /* Reduced margin-top to bring content closer to the top */
-            position: relative; /* For speaker icon positioning */
+            margin-top: 10px; 
+            position: relative; 
         }
         .speaker-icon {
             position: absolute;
-            right: -80px; /* Adjust based on actual size and desired position */
+            right: -80px; 
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
@@ -92,7 +94,7 @@
 <body>
     <div class="content-container">
         <h1>Vim Carrey
-            <i class="speaker-icon" id="speakerIcon">&#128264;</i> <!-- Speaker icon (example using Unicode) -->
+            <i class="speaker-icon" id="speakerIcon">&#128264;</i> 
         </h1>
         <div class="gif-container">
             <img src="media/gifs/primes-tiny-hands.gif" alt="Primes Tiny Hands GIF">
@@ -106,7 +108,6 @@
                 var audio = document.getElementById('indexAudio');
                 audio.play().then(() => {
                     console.log('Audio playing');
-                    // Remove event listeners after the audio has successfully started
                     document.removeEventListener('click', playAudioOnInteraction);
                     document.removeEventListener('keydown', playAudioOnInteraction);
                     document.removeEventListener('mousemove', playAudioOnInteraction);
@@ -115,10 +116,9 @@
                 });
             }
         
-            // Listen for click, keydown, or mousemove event on the document
+            
             document.addEventListener('click', playAudioOnInteraction);
             document.addEventListener('keydown', playAudioOnInteraction);
-            // Use {once: true} to ensure the listener for mousemove is removed after the first invocation
             document.addEventListener('mousemove', playAudioOnInteraction, {once: true});
         
             document.getElementById('speakerIcon').innerHTML = '&#128264;'; // Speaker off icon
@@ -128,13 +128,13 @@
                 if (audio.paused) {
                     audio.play().then(() => {
                         console.log('Audio playing');
-                        this.innerHTML = '&#128266;'; // Change icon to indicate audio is playing
+                        this.innerHTML = '&#128266;'; 
                     }).catch(error => {
                         console.error('Error attempting to play audio:', error);
                     });
                 } else {
                     audio.pause();
-                    this.innerHTML = '&#128264;'; // Change icon back to indicate audio is off
+                    this.innerHTML = '&#128264;'; 
                 }
             });
         </script>
