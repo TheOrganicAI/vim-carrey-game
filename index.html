@@ -61,19 +61,24 @@
         <div class="gif-container">
             <img src="media/gifs/primes-tiny-hands.gif" alt="Primes Tiny Hands GIF">
         </div>
-        <audio id="indexAudio" src="media/audio/prime-voice.mp3" muted autoplay></audio>
+        <audio id="indexAudio" src="media/audio/prime-voice.mp3" muted></audio>
         <a href="vim-carrey-game.html" class="cta">Let's Go!</a>
     </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                var audio = document.getElementById('indexAudio');
-                audio.play().catch(function(error) {
-                    console.log('Audio playback failed:', error);
-                });
-            }, 2000);
-        });
+        function playAudio() {
+            var audio = document.getElementById('indexAudio');
+            audio.play().catch(function(error) {
+                console.log('Audio playback failed:', error);
+            });
+            // Remove event listener after the audio has started
+            document.removeEventListener('click', playAudio);
+            document.removeEventListener('keydown', playAudio);
+        }
+
+        // Listen for any click or keydown event on the document
+        document.addEventListener('click', playAudio);
+        document.addEventListener('keydown', playAudio);
     </script>
 </body>
 </html>
