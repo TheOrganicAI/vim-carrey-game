@@ -173,6 +173,9 @@
         function loadBackground() {
             backgroundImage = new Image();
             backgroundImage.src = "media/images/background-image.png";
+            backgroundImage.onload = function() {
+                drawStartScreen();
+            };
         }
         
         function drawBackground() {
@@ -186,8 +189,8 @@
             canvas.width = container.clientWidth;
             canvas.height = container.clientHeight;
             
-            if (gameStarted || countdown < 5) {
-                drawBackground();
+            if (!gameStarted && !gameOver) {
+                drawStartScreen();
             }
         }
         
@@ -233,7 +236,7 @@
         }
         
         function createObject() {
-            const isClass = Math.random() < 0.2; // 20% chance of being a class
+            const isClass = Math.random() < 0.3; 
             fallingObjects.push({
                 x: Math.random() * 0.8333,
                 y: 0,
@@ -418,6 +421,9 @@
         });
         
         function drawStartScreen() {
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
             ctx.fillStyle = '#00FF00';
             let y = 0.1;
             y = drawCenteredText("Welcome to Vim Carrey's Error Collection Adventure!", y, 24);
@@ -436,9 +442,9 @@
         }
         
         window.addEventListener('resize', resizeCanvas);
-        loadBackground();
         resizeCanvas();
         drawStartScreen();
+        loadBackground();
         </script>
 </body>
 </html>
