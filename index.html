@@ -92,6 +92,9 @@
 </head>
 <body>
     <h1>Vim Carrey's Error Collection Adventure</h1>
+
+    <audio id="backgroundMusic" src="media/audio/background-music.mp3" loop></audio>
+
     <div id="gameContainer">
         <canvas id="gameCanvas" width="600" height="400"></canvas>
         <div id="linkOverlay">
@@ -295,6 +298,7 @@
 
         function startGame() {
             resetGame();
+            backgroundMusic.play();
             
             function startCountdown() {
                 if (countdown > 0) {
