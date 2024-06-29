@@ -186,7 +186,7 @@
             canvas.width = container.clientWidth;
             canvas.height = container.clientHeight;
             
-            if (gameStarted && !gameOver) {
+            if (gameStarted || countdown < 5) {
                 drawBackground();
             }
         }
@@ -284,7 +284,13 @@
         function updateGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            drawBackground();
+            drawPrimeagen();
+            
             if (!gameStarted) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#00FF00';
                 drawCenteredText(`Starting in ${countdown}`, 0.5, 40);
                 return;
             }
@@ -294,14 +300,10 @@
                 return;
             }
             
-            drawBackground();
-            
             // Update Primeagen's position
             let dx = primeagen.targetX - primeagen.x;
             primeagen.x += dx * 0.1; // Smooth movement
             primeagen.x = Math.max(0, Math.min(1 - primeagen.width / canvas.width, primeagen.x));
-            
-            drawPrimeagen();
             
             fallingObjects.forEach((obj, index) => {
                 obj.y += obj.speed;
