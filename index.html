@@ -102,15 +102,13 @@
                 if (audio.paused) {
                     audio.play().then(() => {
                         console.log('Audio playing');
-                        this.innerHTML = '&#128263;'; // Change icon to indicate playing
+                        this.innerHTML = '&#128266;'; // Change icon to indicate audio is playing
                     }).catch(error => {
                         console.error('Error attempting to play audio:', error);
                     });
                 } else {
                     audio.pause();
-                    this.innerHTML = '&#128264;'; // Change icon to indicate paused
+                    this.innerHTML = '&#128264;'; // Change icon back to indicate audio is off
                 }
             });
         </script>
-        </body>
-        </html>
