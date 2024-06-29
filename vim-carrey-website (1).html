@@ -61,16 +61,15 @@
         <div class="gif-container">
             <img src="media/gifs/primes-tiny-hands.gif" alt="Primes Tiny Hands GIF">
         </div>
-        <audio id="indexAudio" src="media/audio/prime-voice.mp3" muted autoplay></audio>
         <a href="vim-carrey-game.html" class="cta">Let's Go!</a>
     </div>
 
-    <audio id="indexAudio" src="media/audio/prime-voice.mp3" muted autoplay></audio>
-    
+    <audio id="backgroundAudio" src="media/audio/prime-voice.mp3"></audio>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                var audio = document.getElementById('indexAudio');
+                var audio = document.getElementById('backgroundAudio');
                 audio.play().catch(function(error) {
                     console.log('Audio playback failed:', error);
                 });
