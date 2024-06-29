@@ -66,19 +66,21 @@
     </div>
     
     <script>
-        function playAudio() {
+        function playAudioOnInteraction() {
             var audio = document.getElementById('indexAudio');
             audio.play().catch(function(error) {
                 console.log('Audio playback failed:', error);
             });
-            // Remove event listener after the audio has started
-            document.removeEventListener('click', playAudio);
-            document.removeEventListener('keydown', playAudio);
+            // Remove event listeners after the audio has started
+            document.removeEventListener('click', playAudioOnInteraction);
+            document.removeEventListener('keydown', playAudioOnInteraction);
+            document.removeEventListener('mousemove', playAudioOnInteraction);
         }
-
-        // Listen for any click or keydown event on the document
-        document.addEventListener('click', playAudio);
-        document.addEventListener('keydown', playAudio);
+    
+        // Listen for click, keydown, or mousemove event on the document
+        document.addEventListener('click', playAudioOnInteraction);
+        document.addEventListener('keydown', playAudioOnInteraction);
+        document.addEventListener('mousemove', playAudioOnInteraction, {once: true});
     </script>
 </body>
 </html>
