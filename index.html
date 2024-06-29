@@ -22,6 +22,14 @@
             text-shadow: 2px 2px #ff00ff;
             text-align: center;
             margin-bottom: 20px;
+            position: relative; /* For speaker icon positioning */
+        }
+        .speaker-icon {
+            position: absolute;
+            right: -80px; /* Adjust based on actual size and desired position */
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
         }
         .content-container {
             display: flex;
@@ -57,30 +65,52 @@
 </head>
 <body>
     <div class="content-container">
-        <h1>Vim Carrey</h1>
+        <h1>Vim Carrey
+            <i class="speaker-icon" id="speakerIcon">&#128264;</i> <!-- Speaker icon (example using Unicode) -->
+        </h1>
         <div class="gif-container">
             <img src="media/gifs/primes-tiny-hands.gif" alt="Primes Tiny Hands GIF">
         </div>
-        <audio id="indexAudio" src="media/audio/prime-voice.mp3" muted></audio>
+        <audio id="indexAudio" src="media/audio/prime-voice.mp3"></audio>
         <a href="vim-carrey-game.html" class="cta">Let's Go!</a>
-    </div>
-    
-    <script>
-        function playAudioOnInteraction() {
-            var audio = document.getElementById('indexAudio');
-            audio.play().catch(function(error) {
-                console.log('Audio playback failed:', error);
+        </div>
+        
+        <script>
+            function playAudioOnInteraction() {
+                var audio = document.getElementById('indexAudio');
+                audio.play().then(() => {
+                    console.log('Audio playing');
+                    // Remove event listeners after the audio has successfully started
+                    document.removeEventListener('click', playAudioOnInteraction);
+                    document.removeEventListener('keydown', playAudioOnInteraction);
+                    document.removeEventListener('mousemove', playAudioOnInteraction);
+                }).catch(function(error) {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+        
+            // Listen for click, keydown, or mousemove event on the document
+            document.addEventListener('click', playAudioOnInteraction);
+            document.addEventListener('keydown', playAudioOnInteraction);
+            // Use {once: true} to ensure the listener for mousemove is removed after the first invocation
+            document.addEventListener('mousemove', playAudioOnInteraction, {once: true});
+        
+            document.getElementById('speakerIcon').innerHTML = '&#128264;'; // Speaker off icon
+        
+            document.getElementById('speakerIcon').addEventListener('click', function() {
+                var audio = document.getElementById('indexAudio');
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        console.log('Audio playing');
+                        this.innerHTML = '&#128263;'; // Change icon to indicate playing
+                    }).catch(error => {
+                        console.error('Error attempting to play audio:', error);
+                    });
+                } else {
+                    audio.pause();
+                    this.innerHTML = '&#128264;'; // Change icon to indicate paused
+                }
             });
-            // Remove event listeners after the audio has started
-            document.removeEventListener('click', playAudioOnInteraction);
-            document.removeEventListener('keydown', playAudioOnInteraction);
-            document.removeEventListener('mousemove', playAudioOnInteraction);
-        }
-    
-        // Listen for click, keydown, or mousemove event on the document
-        document.addEventListener('click', playAudioOnInteraction);
-        document.addEventListener('keydown', playAudioOnInteraction);
-        document.addEventListener('mousemove', playAudioOnInteraction, {once: true});
-    </script>
-</body>
-</html>
+        </script>
+        </body>
+        </html>
