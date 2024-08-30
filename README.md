@@ -24,7 +24,15 @@
 
 ### 🎮 **What is Vim Carrey's Error Collection Adventure?**
 
-In this game, you help **Vim Carrey** collect errors while avoiding those nasty JS classes. It's fun, it's quirky, and it's the perfect way to kill some time while learning how to avoid the pitfalls of JavaScript!
+**Vim Carrey's Error Collection Adventure** is a playful homage to the one and only **The Primeagen**. In this simple 8-bit game, inspired by The Primeagen's love for JavaScript and all things tech, you guide our hero through a world of falling errors while avoiding the dreaded classes.
+
+This project is a tongue-in-cheek tribute, using cutting-edge AI tools to bring it all together:
+- **Voice Clone**: Created using Eleven Labs to mimic The Primeagen's iconic voice.
+- **AI-generated Video GIF**: Brought to life with Luma AI, featured on the homepage.
+- **AI-driven 8-bit Background Music**: Composed using Audio AI to set the retro vibe.
+
+Whether you're here for the trolling or just to enjoy some simple gaming fun, this project is a lighthearted and quirky way to celebrate The Primeagen's impact on the tech community.
+
 
 ### 🎨 **Color Scheme**
 
