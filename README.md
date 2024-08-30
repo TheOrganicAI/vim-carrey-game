@@ -49,22 +49,26 @@ In this game, you help **Vim Carrey** collect errors while avoiding those nasty 
 VIM-CARREY/
 │
 ├── media/
-│   ├── audio/          # Audio files (e.g., prime-voice.mp3, background-music.mp3)
-│   ├── gifs/           # GIF files (e.g., primes-tiny-hands.gif)
-│   └── images/         # Images (e.g., cover-image.png, background-image.png)
+│   ├── audio/           # Audio files (e.g., prime-voice.mp3, background-music.mp3)
+│   ├── gifs/            # GIF files (e.g., primes-tiny-hands.gif)
+│   └── images/          # Images (e.g., cover-image.png, background-image.png)
 │
 ├── src/
-│   ├── css/            # All CSS files
-│   │   ├── styles.css
-│   │   └── game-styles.css
+│   ├── css/             # All CSS files
+│   │   ├── game-styles.css
+│   │   └── styles.css
 │   │
-│   ├── js/             # All JavaScript files
-│   │   ├── script.js
-│   │   └── game-script.js
+│   ├── js/              # All JavaScript files
+│       ├── game-script.js
+│       └── script.js
 │
-├── index.html          # Main homepage HTML
-├── vim-carrey-game.html # Game HTML
-└── README.md           # Project description and documentation
+├── CODE_OF_CONDUCT.md   # Code of conduct file
+├── CONTRIBUTING.md      # Contribution guidelines
+├── index.html           # Main homepage HTML
+├── LICENSE              # License file
+├── README.md            # Project description and documentation
+├── SECURITY.md          # Security policy file
+└── vim-carrey-game.html # Game HTML
 ```
 
 ## 🤝 **Contributing**
