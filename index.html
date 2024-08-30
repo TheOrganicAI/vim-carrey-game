@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -24,72 +23,9 @@
     <meta name="twitter:description" content="Join Vim Carrey on an epic adventure to collect errors and avoid classes!">
     <meta name="twitter:image" content="https://vimcarrey.wtf/media/images/cover-image.png">
 
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #1a1a1a;
-            color: #00ff00;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start; 
-            min-height: 100vh;
-            padding: 0px; 
-            margin-top: 20px; 
-        }
-    
-        @media (max-width: 768px) {
-            body {
-                padding-top: 0px; 
-            }
-        }
-    
-        h1 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            text-shadow: 2px 2px #ff00ff;
-            text-align: center;
-            margin-top: 10px; 
-            position: relative; 
-        }
-        .speaker-icon {
-            position: absolute;
-            right: -80px; 
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 100%;
-        }
-        .gif-container {
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 1rem;
-        }
-        .gif-container img {
-            width: 100%;
-            height: auto;
-        }
-        .cta {
-            background-color: #00ff00;
-            color: #1a1a1a;
-            border: none;
-            padding: 10px 20px;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 20px 0;
-        }
-    
-        .cta:hover {
-            background-color: #ff00ff;
-            color: #00ff00;
-        }
-    </style>
-
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
 <body>
     <div class="content-container">
         <h1>Vim Carrey
@@ -100,49 +36,9 @@
         </div>
         <audio id="indexAudio" src="media/audio/prime-voice.mp3"></audio>
         <a href="vim-carrey-game.html" class="cta">Let's Go!</a>
-        </div>
-        
-        <script>
-            function playAudioOnInteraction() {
-                var audio = document.getElementById('indexAudio');
-                audio.play().then(() => {
-                    console.log('Audio playing');
-                    document.removeEventListener('click', playAudioOnInteraction);
-                    document.removeEventListener('keydown', playAudioOnInteraction);
-                    document.removeEventListener('mousemove', playAudioOnInteraction);
-                }).catch(function(error) {
-                    console.log('Audio playback failed:', error);
-                });
-            }
-        
-            
-            document.addEventListener('click', playAudioOnInteraction);
-            document.addEventListener('keydown', playAudioOnInteraction);
-            document.addEventListener('mousemove', playAudioOnInteraction, {once: true});
-        
-            document.getElementById('speakerIcon').innerHTML = '&#128264;'; // Speaker off icon
-        
-            document.getElementById('speakerIcon').addEventListener('click', function() {
-                var audio = document.getElementById('indexAudio');
-                if (audio.paused) {
-                    audio.play().then(() => {
-                        console.log('Audio playing');
-                        this.innerHTML = '&#128266;'; 
-                    }).catch(error => {
-                        console.error('Error attempting to play audio:', error);
-                    });
-                } else {
-                    audio.pause();
-                    this.innerHTML = '&#128264;'; 
-                }
-            });
-        
-            console.log(`
-            /\\_/\\  
-           ( o.o ) 
-            > ^ <  woof!
-`);
-</script>
+    </div>
+    
+    <!-- Link to external JS -->
+    <script src="src/js/script.js"></script>
 </body>
 </html>
-
