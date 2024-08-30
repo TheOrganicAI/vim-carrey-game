@@ -80,7 +80,8 @@ Want to contribute? Awesome! Here's how you can help:
 
 ## 📜 **License**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License. See the [LICENSE](LICENSE) file for details.
+
 
 <p align="center" style="font-family: 'Courier New', monospace; color: #ff00ff;">
     Built with ❤️ by Ayla Croft
