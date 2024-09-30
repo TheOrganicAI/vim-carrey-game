@@ -4,6 +4,7 @@
         const linkOverlay = document.getElementById('linkOverlay');
         const gameResult = document.getElementById('gameResult');
         const scoreDisplay = document.getElementById('scoreDisplay');
+        const timeDisplay = document.getElementById('timeDisplay');
         const backgroundMusic = document.getElementById('backgroundMusic');
         
         const WIN_SCORE = 69;
@@ -26,6 +27,7 @@
         let objectInterval;
         let countdownTimeout;
         let backgroundImage;
+        let startTime;
         
         const errorTypes = ['TypeError', 'SyntaxError', 'ReferenceError', 'RangeError'];
         
@@ -140,6 +142,7 @@
         function showGameOverScreen() {
             gameResult.textContent = score >= WIN_SCORE ? 'You Win!' : 'You Lose';
             scoreDisplay.textContent = `Errors Collected: ${score}`;
+            timeDisplay.textContent += `Time: ${((Date.now() - startTime) / 1000).toFixed(1)}s`;
             linkOverlay.style.display = 'flex';
         }
         
@@ -191,7 +194,9 @@
             
             ctx.fillStyle = '#00FF00';
             ctx.font = `${20 * (canvas.width / 600)}px Courier New`;
-            ctx.fillText(`Errors Collected: ${score}/${WIN_SCORE}`, 10, 30 * (canvas.height / 400));
+            let scoreLine = `Errors Collected: ${score}/${WIN_SCORE}`;
+            scoreLine += ` -- ${((Date.now() - startTime) / 1000).toFixed(1)}s`;
+            ctx.fillText(scoreLine, 10, 30 * (canvas.height / 400));
         
             if (score >= WIN_SCORE) {
                 endGame();
@@ -232,6 +237,7 @@
                     countdownTimeout = setTimeout(startCountdown, 1000);
                 } else {
                     gameStarted = true;
+                    startTime = Date.now();
                     objectInterval = setInterval(createObject, 1000);
                     gameLoop = requestAnimationFrame(gameLoopFunction);
                 }
